@@ -24,7 +24,7 @@ public class Person {
     public EyeColor getEyecolor(){
         return eyecolor;
     }
-    public HairColor hairColor(){
+    public HairColor gethairColor(){
         return haircolor;
     }
     public  Country getNationality(){

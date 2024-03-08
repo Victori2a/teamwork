@@ -1,5 +1,8 @@
 package managers;
 
+import exceptions.CommandNotExistsException;
+import exceptions.WrongParameterException;
+
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -13,7 +16,7 @@ public class ConsoleHandler {
         System.out.println("Введите путь к файлу коллекции: ");
         return scanner.nextLine();
     }
-    public void listen(){
+    public void listen() throws WrongParameterException, CommandNotExistsException {
         while (true){
             print(">>>");
             String request = scanner.nextLine();

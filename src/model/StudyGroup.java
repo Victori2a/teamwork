@@ -3,7 +3,7 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class StudyGroup {
+public class StudyGroup implements Comparable<StudyGroup> {
     private Integer id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -84,5 +84,10 @@ public class StudyGroup {
     @Override
     public int hashCode(){
         return Objects.hash(id, name, coordinates, creationDate, studentsCount, expelledStudents, shouldBeExpelled, formOfEducation, groupAdmin);
+    }
+
+    @Override
+    public int compareTo(StudyGroup studyGroup) {
+        return 0;
     }
 }
