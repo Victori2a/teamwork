@@ -1,8 +1,12 @@
 package managers;
 
-import exceptions.CommandNotExistsException;
-import exceptions.WrongParameterException;
+import exceptions.*;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -16,7 +20,7 @@ public class ConsoleHandler {
         System.out.println("Введите путь к файлу коллекции: ");
         return scanner.nextLine();
     }
-    public void listen() throws WrongParameterException, CommandNotExistsException {
+    public void listen() throws IncorrectFilenameException, ElementNotFoundException, IOException, WrongParameterException, CommandNotExistsException, NullUserRequestException {
         while (true){
             print(">>>");
             String request = scanner.nextLine();
@@ -37,5 +41,8 @@ public class ConsoleHandler {
 
     public void printError(String message) {
         System.out.println("Ошибка: " + message);
+    }
+    public CommandManager getCommandManager(){
+        return commandManager;
     }
 }

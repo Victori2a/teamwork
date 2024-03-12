@@ -2,13 +2,13 @@ package model;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable<Person>{
     private String name; //Поле не может быть null, Строка не может быть пустой
     private float weight; //Поле не может быть null, Значение поля должно быть больше 0
     private EyeColor eyecolor; //Поле не может быть null
     private HairColor haircolor; //Поле не может быть null
     private Country nationality; //Поле не может быть null
-    public Person(String name, float weight, EyeColor eyecolor, HairColor haircolor, Country nationality){
+    public Person(String name, float weight, EyeColor eyecolor, HairColor haircolor, Country nationality) {
         this.name = name;
         this.weight = weight;
         this.eyecolor = eyecolor;
@@ -45,5 +45,9 @@ public class Person {
         if (object == null || getClass() != object.getClass()) return false;
         Person person = (Person) object;
         return Objects.equals(name, person.name) && Float.compare(weight, person.weight) ==0  && Objects.equals(eyecolor, person.eyecolor) && Objects.equals(haircolor, person.haircolor) && Objects.equals(nationality, person.nationality);
+    }
+    @Override
+    public int compareTo(Person person) {
+        return (int) (this.getWeight()-person.getWeight());
     }
 }

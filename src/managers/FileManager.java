@@ -1,13 +1,11 @@
 package managers;
 
+import exceptions.*;
 import model.*;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.util.*;
 
 public class FileManager {
     public static PriorityQueue<StudyGroup> readCollectionFromCSV(String filename, ConsoleHandler consoleHandler) {
@@ -53,9 +51,9 @@ public class FileManager {
                         studyGroup.getFormOfEducation().ordinal() + ";" +
                         studyGroup.getGroupAdmin().getName()+ ";" +
                         studyGroup.getGroupAdmin().getWeight()+ ";" +
-                        studyGroup.getGroupAdmin().getEyecolor()+";"+
-                        studyGroup.getGroupAdmin().gethairColor()+";"+
-                        studyGroup.getGroupAdmin().getNationality()+";";
+                        studyGroup.getGroupAdmin().getEyecolor().ordinal()+";"+
+                        studyGroup.getGroupAdmin().gethairColor().ordinal()+";"+
+                        studyGroup.getGroupAdmin().getNationality().ordinal()+";";
                 writer.println(line);
             }
             writer.close();
@@ -80,5 +78,31 @@ public class FileManager {
         Person groupAdmin = new Person(nameAdmin, weight,eyeColor, hairColor, nationality);
 
         return new StudyGroup(id, name, coordinates,creationDate,studentCount,expelledStudents,shouldBeExpelled,formOfEducation, groupAdmin);
+    }
+    public static String[] readScript(String filename) throws WrongParameterException {
+        try {
+            ArrayList<String> commands = new ArrayList<>();
+            File file = new File(filename);
+            Scanner scanner = null;
+            scanner = new Scanner(file);
+            scanner.useDelimiter("\\n");
+            String line;
+            while (scanner.hasNext()) {
+                line = scanner.nextLine();
+                commands.add(line);
+            }
+            String[] comm = new String[commands.size()];
+            return commands.toArray(comm);
+        } catch (IOException e) {
+            throw new WrongParameterException("Файл не найден или нет доступа к нему.");
+        }
+    }
+    public static void readCommands(String filename, CommandManager commandManager) throws IOException, WrongParameterException, IncorrectFilenameException, ElementNotFoundException, CommandNotExistsException, NullUserRequestException {
+        try {
+            String[] commands = readScript(filename);
+            commandManager.processFileCommands(commands);
+        } catch (WrongParameterException e) {
+            throw new WrongParameterException(e.toString());
+        }
     }
 }

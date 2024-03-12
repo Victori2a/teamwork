@@ -88,6 +88,6 @@ public class StudyGroup implements Comparable<StudyGroup> {
 
     @Override
     public int compareTo(StudyGroup studyGroup) {
-        return 0;
+        return (int) (this.getGroupAdmin().getWeight()-studyGroup.getGroupAdmin().getWeight());
     }
 }
