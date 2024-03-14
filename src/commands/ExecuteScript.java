@@ -6,6 +6,9 @@ import managers.FileManager;
 
 import java.io.IOException;
 
+/**
+ * 'execute_script' command. Executes scripts from a file.
+ */
 public class ExecuteScript extends Command implements CommandWithParameters {
     public ExecuteScript(String nameInConsole) {
         super(nameInConsole, "<Путь к файлу> Выполняет содержимое скрипта");

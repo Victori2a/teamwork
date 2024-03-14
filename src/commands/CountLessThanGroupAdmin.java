@@ -5,9 +5,12 @@ import exceptions.WrongParameterException;
 import managers.Validator;
 import model.StudyGroup;
 
+/**
+ * 'count_less_than_groupAdmin' command. Prints the number of elements whose values of the 'Group admin' field are less than the specified one
+ */
 public class CountLessThanGroupAdmin extends Command implements CommandWithParameters {
     public CountLessThanGroupAdmin(String nameInConsole) {
-        super(nameInConsole, "Выводит количество элементов, значения поля 'Староста группы' меньше заданного");
+        super(nameInConsole, "<float weight> Выводит количество элементов, значения поля 'Староста группы' которых меньше заданного");
     }
 
     @Override

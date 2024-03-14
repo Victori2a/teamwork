@@ -6,14 +6,20 @@ import commands.interfaces.CommandWithoutParameters;
 import exceptions.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
+/**
+ * Operates the commands.
+ */
 public class CommandManager {
     private final HashSet<Command> commands = new HashSet<>();
     private CollectionManager collectionManager;
+
+    /**
+     * Executes the command
+     * @param userInput
+     */
     public void exec(String userInput) throws WrongParameterException, IncorrectFilenameException, ElementNotFoundException, CommandNotExistsException, NullUserRequestException, IOException{
         try {
             String[] splitted = splitUserRequest(userInput);
@@ -40,6 +46,12 @@ public class CommandManager {
             //collectionManager.getConsoleHandler().listen();
         }
     }
+
+    /**
+     * @param request
+     * @return the name of the entered command and the parameter, if it is entered
+     * @throws NullUserRequestException
+     */
     private String[] splitUserRequest(String request) throws NullUserRequestException {
         if (request.isEmpty()) throw new NullUserRequestException("Введена пустая строка");
         if (!request.contains(" ")) return new String[]{request};
@@ -63,6 +75,10 @@ public class CommandManager {
         }
         return processed;
     }
+
+    /**
+     * @return names of the manager's commands.
+     */
     public HashSet<String> getConsoleCommandsNames(){
         HashSet<String> commandNames = new HashSet<>();
         for (Command command: commands){
@@ -70,24 +86,44 @@ public class CommandManager {
         }
         return commandNames;
     }
+
+
+    /**
+     * @param commands
+     */
     public void addCommands(Command... commands){
         this.commands.addAll(Arrays.asList(commands));
         for (Command command : commands){
             command.setCollectionManager(collectionManager);
         }
     }
+
+    /**
+     * @param collectionManager
+     */
     public void setCollectionManager(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
         for (Command command: commands){
             command.setCollectionManager(collectionManager);
         }
     }
-    public void processFileCommands(String[] lines) throws WrongParameterException, CommandNotExistsException, IncorrectFilenameException, ElementNotFoundException, IOException, NullUserRequestException {
+
+    /**
+     * @param commands to executes.
+     */
+    public void processFileCommands(String[] commands) throws WrongParameterException, CommandNotExistsException, IncorrectFilenameException, ElementNotFoundException, IOException, NullUserRequestException {
         int i = 0;
-        System.out.println("process" + lines.length);
-        while (i < lines.length) {
-            exec(lines[i]);
+        System.out.println("process" + commands.length);
+        while (i < commands.length) {
+            exec(commands[i]);
             i++;
         }
+    }
+
+    /**
+     * @return HahSet of manager's commands.
+     */
+    public HashSet<Command> getCommands(){
+        return commands;
     }
 }

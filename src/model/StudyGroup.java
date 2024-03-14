@@ -13,6 +13,18 @@ public class StudyGroup implements Comparable<StudyGroup> {
     private Long shouldBeExpelled; //Значение поля должно быть больше 0, Поле не может быть null
     private FormOfEducation formOfEducation; //Поле не может быть null
     private Person groupAdmin; //Поле не может быть null
+
+    /**
+     * @param id - study group ID
+     * @param name - study group name
+     * @param coordinates - study group coordinates object
+     * @param creationDate - ZonedDateTime object of creation date
+     * @param studentsCount - students count in the group
+     * @param expelledStudents - expelled students count in the group
+     * @param shouldBeExpelled - should be expelled students count in the group
+     * @param formOfEducation - form of group education
+     * @param groupAdmin - admin in the group
+     */
     public StudyGroup(Integer id, String name, Coordinates coordinates,java.time.LocalDate creationDate, Long studentsCount,Long expelledStudents,Long shouldBeExpelled,FormOfEducation formOfEducation,Person groupAdmin){
         this.id = id;
         this.name = name;
@@ -68,10 +80,10 @@ public class StudyGroup implements Comparable<StudyGroup> {
                 ", coordinates="+coordinates+
                 ", creationDate="+creationDate+
                 ", studentCount="+studentsCount+
-                ", expelledStudents"+expelledStudents+
-                ", shouldBeExpelled"+shouldBeExpelled+
-                ", formOfEducation"+formOfEducation+
-                ", groupAdmin"+groupAdmin+
+                ", expelledStudents="+expelledStudents+
+                ", shouldBeExpelled="+shouldBeExpelled+
+                ", formOfEducation="+formOfEducation+
+                ", groupAdmin="+groupAdmin+
                 "}";
     }
     @Override
@@ -88,6 +100,6 @@ public class StudyGroup implements Comparable<StudyGroup> {
 
     @Override
     public int compareTo(StudyGroup studyGroup) {
-        return (int) (this.getGroupAdmin().getWeight()-studyGroup.getGroupAdmin().getWeight());
+        return (int) (this.getName().compareTo(studyGroup.getName()));
     }
 }

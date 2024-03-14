@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * FormOfEducation enum class. Contains three values.
+ */
 public enum FormOfEducation {
     DISTANCE_EDUCATION,
     FULL_TIME_EDUCATION,

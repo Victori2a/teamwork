@@ -7,6 +7,9 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
+/**
+ * Operates the file for saving/loading collection.
+ */
 public class FileManager {
     public static PriorityQueue<StudyGroup> readCollectionFromCSV(String filename, ConsoleHandler consoleHandler) {
         PriorityQueue<StudyGroup> collection = new PriorityQueue<>();
@@ -34,6 +37,11 @@ public class FileManager {
             return null;
         }
     }
+
+    /**
+     * Writes collection to a file.
+     * @param collection Collection to write.
+     */
     public static void writeCollectionToCSV(Collection<StudyGroup> collection, String filename){
         String line;
         try {
@@ -61,6 +69,11 @@ public class FileManager {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Reads collection from a file.
+     * @return Readed collection.
+     */
     private static StudyGroup parseStudyGroupFromStrings(String[] data) {
         Integer id = Integer.parseInt(data[0]); //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
         String name = data[1]; //Поле не может быть null, Строка не может быть пустой
@@ -79,6 +92,11 @@ public class FileManager {
 
         return new StudyGroup(id, name, coordinates,creationDate,studentCount,expelledStudents,shouldBeExpelled,formOfEducation, groupAdmin);
     }
+
+    /**
+     * Reads command from a file.
+     * @return Readed commands.
+     */
     public static String[] readScript(String filename) throws WrongParameterException {
         try {
             ArrayList<String> commands = new ArrayList<>();
