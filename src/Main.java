@@ -3,10 +3,7 @@ import exceptions.*;
 import managers.CollectionManager;
 import managers.CommandManager;
 import managers.ConsoleHandler;
-import managers.FileManager;
-
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main{
@@ -29,9 +26,12 @@ public class Main{
                 new Clear("clear"),
                 new Head("head"),
                 new RemoveHead("remove_head"),
-                new RemoveById("remove_by_id"));
-//        FileManager.readCollectionFromCSV("C:/Users/user/Desktop/mine/java/coll4.csv", consoleHandler);
+                new RemoveById("remove_by_id"),
+                new Add("add"),
+                new AddIfMin("add_if_min"),
+                new UpdateById("update_by_id"));
         consoleHandler.listen();
 
     }
 }
+//C:/Users/user/Desktop/mine/java/collection.csv

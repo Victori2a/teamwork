@@ -1,5 +1,8 @@
 package managers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Class that consist of some static methods that check users' input.
  */
@@ -29,5 +32,41 @@ public class Validator {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    /**
+     * @param arr with Objects
+     * @return boolean
+     */
+    public static boolean isEmptyArray(Object[] arr) {
+        return arr.length == 0;
+    }
+
+    /**
+     * @param obj
+     * @return boolean
+     */
+    public static boolean isNull(Object obj) {
+        return obj == null;
+    }
+
+
+    /**
+     * Сhecks if the name is correct
+     * @param str
+     * @return boolean
+     */
+    public static boolean isValidName(String str) {
+        return !isNull(str) && !str.isEmpty();
+    }
+
+    /**
+     * @param inputString
+     * @return
+     */
+    public static boolean isStringWithIntegers(String inputString) {
+        Pattern pattern = Pattern.compile("^\\s*\\d+\\s*(?:\\s+\\d+\\s*)*$");
+        Matcher matcher = pattern.matcher(inputString);
+        return matcher.matches();
     }
 }

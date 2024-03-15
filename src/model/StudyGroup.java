@@ -53,7 +53,7 @@ public class StudyGroup implements Comparable<StudyGroup> {
         return creationDate;
     }
 
-    public long getStudentsCount() {
+    public Long getStudentsCount() {
         return studentsCount;
     }
 

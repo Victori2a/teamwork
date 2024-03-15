@@ -7,14 +7,14 @@ import commands.interfaces.CommandWithoutParameters;
  */
 public class RemoveHead extends Command implements CommandWithoutParameters {
     public RemoveHead(String nameInConsole) {
-        super(nameInConsole, "Вывoдит и удаляет первый элемент");
+        super(nameInConsole, "<Без параметров> Вывoдит и удаляет первый элемент.");
     }
     @Override
     public void execute() {
         if (!this.collectionManager.getCollection().isEmpty()) {
             this.collectionManager.getConsoleHandler().println(this.collectionManager.getCollection().poll());
         } else {
-            this.collectionManager.getConsoleHandler().println("В коллекции нет элементов");
+            this.collectionManager.getConsoleHandler().println("В коллекции нет элементов.");
         }
 
     }

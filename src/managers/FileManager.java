@@ -115,6 +115,11 @@ public class FileManager {
             throw new WrongParameterException("Файл не найден или нет доступа к нему.");
         }
     }
+
+    /**
+     * @param filename
+     * @param commandManager
+     */
     public static void readCommands(String filename, CommandManager commandManager) throws IOException, WrongParameterException, IncorrectFilenameException, ElementNotFoundException, CommandNotExistsException, NullUserRequestException {
         try {
             String[] commands = readScript(filename);
